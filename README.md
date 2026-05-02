@@ -1,1 +1,1 @@
-# Butterfly-FGVC
+# CLIP-Mushroom
