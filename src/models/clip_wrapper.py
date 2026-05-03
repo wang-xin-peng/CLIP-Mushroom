@@ -23,7 +23,8 @@ class CLIPWrapper:
         Returns:
             (B, D) normalized feature tensor
         """
-        features = self.model.get_image_features(pixel_values.to(self.device))
+        output = self.model.get_image_features(pixel_values.to(self.device))
+        features = output.pooler_output if hasattr(output, 'pooler_output') else output
         features = features / features.norm(dim=-1, keepdim=True)
         return features
 
@@ -39,7 +40,8 @@ class CLIPWrapper:
         inputs = self.processor(
             text=text_list, return_tensors="pt", padding=True
         ).to(self.device)
-        features = self.model.get_text_features(**inputs)
+        output = self.model.get_text_features(**inputs)
+        features = output.pooler_output if hasattr(output, 'pooler_output') else output
         features = features / features.norm(dim=-1, keepdim=True)
         return features
 

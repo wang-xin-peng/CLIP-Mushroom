@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+*.pyo
+checkpoints/
+outputs/features/
+outputs/figures/
+outputs/reports/
+*.bin
+*.pkl
+data/
+.claude/
